@@ -1,0 +1,26 @@
+run.sh
+__init__.py
+*.Python
+*.env
+*.pyc
+*.pyo
+*.db
+*.egg-info
+*.eb-ignore
+*.ebignore
+*.DS_Store
+*.bash_profile
+*/__pycache__/*
+build/*
+dist/
+env/
+config.py
+twilio_client.py
+notes.txt
+.bashprofile
+
+# Elastic Beanstalk Files
+.ebextensions/
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
