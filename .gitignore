@@ -1,5 +1,10 @@
 run.sh
 __init__.py
+*/__pycache__/*
+*/.Python
+*/include/*
+*/__init__.py
+itt/.Python
 env/*
 *.Python
 *.env
