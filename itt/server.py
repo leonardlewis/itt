@@ -14,6 +14,7 @@ HOST = ''
 PORT = 33000
 BUFSIZ = 1024
 ADDR = (HOST, PORT)
+# Creates a socket object and specifies IP addresses from the internet and type SOCK_STREAM.
 SERVER = socket(AF_INET, SOCK_STREAM)
 SERVER.bind(ADDR)
 
@@ -26,9 +27,27 @@ def accept_incoming_connections():
     while True:
         client, client_address = SERVER.accept()
         print("%s:%s has connected." % client_address)
-        client.send(bytes("Welcome!" + "Please type your name, then press Enter/Return.", "utf-8"))
+        client.send(bytes("Welcome! Please type your name, then press Enter/Return.", "utf-8"))
         addresses[client] = client_address
         Thread(target=handle_client, args=(client,)).start()
+
+def handle_client(client):
+    """Handles a single client connection."""
+    name = client.recv(BUFSIZ).decode("utf-8")
+    welcome = f"Welcome {name}! If you ever want to quit, type {quit} to exit."
+    client.send(bytes(welcome, "utf-8"))
+    msg = "%s has joined the chat!" % name
+    clients[client] = name
+    while True:
+        msg = client.recv(BUFSIZ)
+        if msg != bytes(f"{quit}", "utf-8"):
+            broadcast(msg, name+": ")
+        else:
+            client.send.bytes(f"{quit}", "utf-8")
+            client.close()
+            del clients[client]
+            broadcast(bytes("%s has left the chat." % name, "utf-8"))
+            break
 
 def broadcast(msg, prefix=""):
     """Broadcasts a message to all the clients."""
