@@ -1,4 +1,5 @@
-run.sh
+runclient.sh
+runserver.sh
 __init__.py
 */__pycache__/*
 */.Python
