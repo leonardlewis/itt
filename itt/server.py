@@ -1,9 +1,11 @@
+#!/usr/bin/env python3
+
 # https://www.geeksforgeeks.org/simple-chat-room-using-python/
 # https://medium.com/swlh/lets-write-a-chat-app-in-python-f6783a9ac170
 
-#!/usr/bin/env python3
 """Server for multithreaded (asynchronous) chat application."""
 
+# Import from standard Python libraries.
 from socket import AF_INET, socket, SOCK_STREAM
 from threading import Thread
 
@@ -19,7 +21,7 @@ SERVER = socket(AF_INET, SOCK_STREAM)
 SERVER.bind(ADDR)
 
 # A loop that waits for incoming connections. New connections get logged, a
-# welcome message gets printed, then the client addresses gets added to the
+# welcome message gets printed, then the client address gets added to the
 # addresses dictionary.
 
 def accept_incoming_connections():
